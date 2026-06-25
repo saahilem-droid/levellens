@@ -560,35 +560,35 @@ export default function Home() {
     setIsPlaying(false);
     setTimelineIndex(0);
 
-    axios.get(`${API}/playercount/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setPlayerCount(r.data.count));
+     axios.get(`${API}/playercount/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setPlayerCount(r.data.count));
 
-    axios.get(`${API}/movement/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setMovementPoints(r.data));
+  axios.get(`${API}/movement/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setMovementPoints(r.data));
 
-    axios.get(`${API}/loot/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setLootPoints(r.data));
+  axios.get(`${API}/loot/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setLootPoints(r.data));
 
-    axios.get(`${API}/deaths/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setDeathPoints(r.data));
+  axios.get(`${API}/deaths/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setDeathPoints(r.data));
 
-    axios.get(`${API}/kills/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setKillPoints(r.data));
+  axios.get(`${API}/kills/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setKillPoints(r.data));
 
-    axios.get(`${API}/botkills/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setBotKillPoints(r.data));
+  axios.get(`${API}/botkills/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setBotKillPoints(r.data));
 
-    axios.get(`${API}/storm/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setStormPoints(r.data));
+  axios.get(`${API}/storm/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setStormPoints(r.data));
 
-    axios.get(`${API}/paths/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setPaths(r.data));
+  axios.get(`${API}/paths/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setPaths(r.data));
 
-    axios.get(`${API}/replay/${selectedDate}/${selectedMap}/${selectedMatch}`)
-      .then((r) => setReplayData(r.data));
+  axios.get(`${API}/replay/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    .then((r) => setReplayData(r.data));
 
-    if (selectedMatch && selectedMatch !== "all") {
-      axios.get(`${API}/players/${selectedDate}/${selectedMap}/${selectedMatch}`)
+  if (selectedMatch && selectedMatch !== "all") {
+    axios.get(`${API}/players/${selectedDate}/${selectedMap}/${selectedMatch}`)
         .then((r) => {
           setPlayers(r.data);
           if (r.data.length > 0 && selectedPlayer === "all") setSelectedPlayer(r.data[0]);
