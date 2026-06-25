@@ -540,7 +540,7 @@ export default function Home() {
   // ── 2. Fetch map/match filters when date changes
   useEffect(() => {
     if (!selectedDate) return;
-    axios.get(`${API}/${selectedDate}`).then((response) => {
+    axios.get(`${API}/filters/${selectedDate}`).then((response) => {
       setMaps(response.data);
       const mapNames = Object.keys(response.data);
       if (mapNames.length > 0) setSelectedMap(mapNames[0]);
