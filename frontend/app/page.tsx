@@ -531,7 +531,7 @@ export default function Home() {
 
   // ── 1. Fetch dates once on mount
   useEffect(() => {
-    axios.get('${API}').then((response) => {
+    axios.get(`${API}/dates`).then((response) => {
       setDates(response.data.dates);
       if (response.data.dates.length > 0) setSelectedDate(response.data.dates[0]);
     });
