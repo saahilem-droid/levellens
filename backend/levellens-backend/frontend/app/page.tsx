@@ -531,7 +531,7 @@ export default function Home() {
 
   // ── 1. Fetch dates once on mount
   useEffect(() => {
-    axios.get("${API}").then((response) => {
+    axios.get("http://127.0.0.1:8000/dates").then((response) => {
       setDates(response.data.dates);
       if (response.data.dates.length > 0) setSelectedDate(response.data.dates[0]);
     });
@@ -540,7 +540,7 @@ export default function Home() {
   // ── 2. Fetch map/match filters when date changes
   useEffect(() => {
     if (!selectedDate) return;
-    axios.get(`${API}/${selectedDate}`).then((response) => {
+    axios.get(`http://127.0.0.1:8000/filters/${selectedDate}`).then((response) => {
       setMaps(response.data);
       const mapNames = Object.keys(response.data);
       if (mapNames.length > 0) setSelectedMap(mapNames[0]);
@@ -560,35 +560,35 @@ export default function Home() {
     setIsPlaying(false);
     setTimelineIndex(0);
 
-    axios.get(`${API}/playercount/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/playercount/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setPlayerCount(r.data.count));
 
-    axios.get(`${API}/movement/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/movement/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setMovementPoints(r.data));
 
-    axios.get(`${API}/loot/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/loot/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setLootPoints(r.data));
 
-    axios.get(`${API}/deaths/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/deaths/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setDeathPoints(r.data));
 
-    axios.get(`${API}/kills/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/kills/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setKillPoints(r.data));
 
-    axios.get(`${API}/botkills/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/botkills/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setBotKillPoints(r.data));
 
-    axios.get(`${API}/storm/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/storm/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setStormPoints(r.data));
 
-    axios.get(`${API}/paths/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/paths/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setPaths(r.data));
 
-    axios.get(`${API}/replay/${selectedDate}/${selectedMap}/${selectedMatch}`)
+    axios.get(`http://127.0.0.1:8000/replay/${selectedDate}/${selectedMap}/${selectedMatch}`)
       .then((r) => setReplayData(r.data));
 
     if (selectedMatch && selectedMatch !== "all") {
-      axios.get(`${API}/players/${selectedDate}/${selectedMap}/${selectedMatch}`)
+      axios.get(`http://127.0.0.1:8000/players/${selectedDate}/${selectedMap}/${selectedMatch}`)
         .then((r) => {
           setPlayers(r.data);
           if (r.data.length > 0 && selectedPlayer === "all") setSelectedPlayer(r.data[0]);
